@@ -52,6 +52,7 @@ class ShowSchema extends Command
         foreach ($s->getSchema() as $key => $value) {
             $this->info($key . ' (rows: ' . $value['rowsCount'] . ')');
             $this->table($headers, $value['attributes']);
+            $this->line('');
         }
     }
 

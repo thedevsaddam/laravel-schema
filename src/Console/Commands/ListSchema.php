@@ -53,6 +53,7 @@ class ListSchema extends Command
             foreach ($value['attributes'] as $attribute) {
                 $this->line('  ' . $attribute['Field'] . '  ' . $attribute['Type']);
             }
+            $this->line('');
         }
     }
 
