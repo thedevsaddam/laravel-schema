@@ -1,0 +1,29 @@
+{
+    "name": "thedevsaddam/laravel-schema",
+    "description": "Display the connected database information in console.",
+    "type": "package",
+    "keywords": [
+        "thedevsaddam",
+        "laravel",
+        "laravel-schema",
+        "schema",
+        "database",
+        "laravel-database viewer"
+    ],
+    "homepage": "https://github.com/thedevsaddam/laravel-schema",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saddam Hossain",
+            "email": "thedevsaddam@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Thedevsaddam\\LaravelSchema\\":"src"
+        }
+    }
+}
