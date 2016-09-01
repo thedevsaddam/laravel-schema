@@ -48,7 +48,7 @@ class SimpleSchema extends Command
         if (!count($s->getTables())) {
             $this->warn('Database does not contain any table');
         }
-        $headers = ['Name', 'Rows'];
+        $headers = ['Table Name', 'Rows'];
         $body = [];
         foreach ($s->getSchema() as $key => $value) {
             $body[] = [ $key,   $value['rowsCount']];

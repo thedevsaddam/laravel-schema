@@ -12,7 +12,7 @@ Installation
 Via Composer
 
 ``` bash
-$ composer require thedevsaddam/laravel-schema 1.0.2
+$ composer require thedevsaddam/laravel-schema 1.0.3
 ```
 Install manually (add the line to composer.json file)
 ``` bash
@@ -88,6 +88,6 @@ Query result will be dumped in console
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
 
-Note: Multiple database facility coming soon...
+Note: Currently working with Mysql. Multiple database / connection facility coming soon...
 
 Thank you :)
