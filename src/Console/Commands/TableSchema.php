@@ -70,7 +70,7 @@ class TableSchema extends Command
                 $bindedRow = [];
                 for ($j = 0; $j < count($headers); $j++) {
                     $column = $headers[$j];
-                    $bindedRow[$j] = str_limit($rows[$i]->$column, 10);
+                    $bindedRow[$j] = str_limit($rows[$i]->$column, 10, '');
                 }
                 $body[$i] = $bindedRow;
             }
