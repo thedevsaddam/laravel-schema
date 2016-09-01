@@ -14,7 +14,7 @@ class ListSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:list';
+    protected $signature = 'schema:list {tableName?}';
 
     /**
      * The console command description.
@@ -45,9 +45,25 @@ class ListSchema extends Command
     public function showSchemaInList()
     {
         $s = new Schema();
-        if (!count($s->getTables())) {
+        $tables = $s->getTables();
+        if (!count($tables)) {
             $this->warn('Database does not contain any table');
         }
+
+        $tableName = $this->argument('tableName');
+        if (!empty($tableName)) {
+            if (!in_array($tableName, $tables))
+                return $this->warn('Table name is not correct!');
+
+            $attributes = $s->getTableColumns($tableName);
+            $rowsCount = $s->getTableRowCount($tableName);
+            $this->info($tableName . ' (rows: ' . $rowsCount . ')');
+            foreach ($attributes as $attribute) {
+                $this->line('  ' . $attribute['Field'] . '  ' . $attribute['Type']);
+            }
+            return;
+        }
+
         foreach ($s->getSchema() as $key => $value) {
             $this->info($key . ' (rows: ' . $value['rowsCount'] . ')');
             foreach ($value['attributes'] as $attribute) {

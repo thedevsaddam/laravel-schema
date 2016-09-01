@@ -9,6 +9,7 @@
 namespace Thedevsaddam\LaravelSchema;
 
 use DB;
+use Illuminate\Pagination\Paginator;
 
 class Schema
 {
@@ -56,15 +57,36 @@ class Schema
     }
 
     /**
+     * Get table columns
+     * @param $table
+     * @return array
+     */
+    public function getTableColumns($table)
+    {
+        return $this->transformColumns(DB::select("SHOW COLUMNS FROM " . $table));
+
+    }
+
+    /**
+     * Get table total row count
+     * @param $table
+     * @return mixed
+     */
+    public function getTableRowCount($table)
+    {
+        return DB::table($table)->count();
+    }
+
+    /**
      * Generate table information
      * @return $this
      */
     private function generateTableInfo()
     {
         foreach ($this->getTables() as $table) {
-            $columns = DB::select("SHOW COLUMNS FROM " . $table);
-            $this->schema[$table]['attributes'] = $this->transformColumns($columns);
-            $this->schema[$table]['rowsCount'] = DB::table($table)->count();
+            $columns = $this->getTableColumns($table);
+            $this->schema[$table]['attributes'] = $columns;
+            $this->schema[$table]['rowsCount'] = $this->getTableRowCount($table);
         }
         return $this;
     }
@@ -106,6 +128,22 @@ class Schema
     public function rawQuery($query)
     {
         return DB::select(DB::raw($query));
+    }
+
+
+    /**
+     * Fetch data form table using pagination
+     * @param $tableName
+     * @param int $page
+     * @param int $limit
+     * @return mixed
+     */
+    public function getPaginatedData($tableName, $page = 1, $limit = 10)
+    {
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+        return DB::table($tableName)->paginate($limit)->toArray();
     }
 
 }

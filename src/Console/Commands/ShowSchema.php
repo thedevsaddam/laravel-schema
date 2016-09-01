@@ -14,7 +14,7 @@ class ShowSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:show';
+    protected $signature = 'schema:show {tableName?}';
 
     /**
      * The console command description.
@@ -45,10 +45,25 @@ class ShowSchema extends Command
     public function showSchemaInTable()
     {
         $s = new Schema();
-        if (!count($s->getTables())) {
+        $tables = $s->getTables();
+        $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
+
+        if (!count($tables)) {
             $this->warn('Database does not contain any table');
         }
-        $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
+
+        $tableName = $this->argument('tableName');
+        if (!empty($tableName)) {
+            if (!in_array($tableName, $tables))
+                return $this->warn('Table name is not correct!');
+
+            $body = $s->getTableColumns($tableName);
+            $rowsCount = $s->getTableRowCount($tableName);
+            $this->info($tableName . ' (rows: ' . $rowsCount . ')');
+            $this->table($headers, $body);
+            return;
+        }
+
         foreach ($s->getSchema() as $key => $value) {
             $this->info($key . ' (rows: ' . $value['rowsCount'] . ')');
             $this->table($headers, $value['attributes']);
