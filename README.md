@@ -12,7 +12,7 @@ Installation
 Via Composer
 
 ``` bash
-$ composer require thedevsaddam/laravel-schema 1.0.3
+$ composer require thedevsaddam/laravel-schema
 ```
 Install manually (add the line to composer.json file)
 ``` bash
@@ -77,7 +77,12 @@ Table definition with default page and limit
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/table-pagination.png)
 
-Note: Provide first argument as **page number** and second argument as **limit** (Both are optional and integer)
+Note: Provide first argument as **page number** (integer [default is 1]), second argument as **limit** (integer [default is 20]), third argument **columnName:order** for ordering the table(order=asc or desc [default is 'ascending order']).
+See the example below:
+
+```bash
+php artisan schema:table countries 4 25 id:desc
+```
 
 To perform raw sql query
 ```bash
