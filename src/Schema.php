@@ -136,14 +136,20 @@ class Schema
      * @param $tableName
      * @param int $page
      * @param int $limit
+     * @param null $orderAttribute
+     * @param string $order
      * @return mixed
      */
-    public function getPaginatedData($tableName, $page = 1, $limit = 10)
+    public function getPaginatedData($tableName, $page = 1, $limit = 10, $orderAttribute = null, $order = 'ASC')
     {
         Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
-        return DB::table($tableName)->paginate($limit)->toArray();
+        $data = DB::table($tableName);
+        if (null === $orderAttribute) {
+            return $data->paginate($limit)->toArray();
+        }
+        return $data->orderBy($orderAttribute, $order)->paginate($limit)->toArray();
     }
 
 }
