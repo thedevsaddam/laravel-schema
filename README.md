@@ -77,7 +77,7 @@ Table definition with default page and limit
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/table-pagination.png)
 
-Note: Provide first argument as **page number** (integer [default is 1]), second argument **columnName:order** for ordering the table(order=asc or desc [default is 'ascending order']), third argument as **limit** (integer [default is 20]).
+Note: Provide first argument as **page number** (integer [default is 1]), second argument **columnName:order** for ordering the table(order=asc or desc [default is 'ascending order']), third argument as **limit** (integer [default is 15]).
 See the example below:
 
 ```bash
