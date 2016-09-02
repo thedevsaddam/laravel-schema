@@ -14,7 +14,7 @@ class QuerySchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:query {rawQuery}';
+    protected $signature = 'schema:query {rawQuery?}';
 
     /**
      * The console command description.
