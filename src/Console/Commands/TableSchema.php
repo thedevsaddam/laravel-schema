@@ -44,6 +44,7 @@ class TableSchema extends Command
      */
     public function showSchemaDefinitionInTable()
     {
+        //TODO: need to refactor the code
         $s = new Schema();
         $tables = $s->getTables();
 
@@ -56,11 +57,11 @@ class TableSchema extends Command
             $this->warn('Table name is required!');
             return false;
         }
+
         if (!in_array($tableName, $tables)) {
             $this->warn('Table name is not correct!');
             return false;
         }
-
 
         $page = (!empty($this->argument('page'))) ? $this->argument('page') : 1;
         $limit = (!empty($this->argument('limit'))) ? $this->argument('limit') : 15;
@@ -85,6 +86,7 @@ class TableSchema extends Command
                 return false;
             }
         }
+
         $rows = $s->getPaginatedData($tableName, $page, $limit, $attributeName, $order)['data'];
         $body = $this->makeTableBody($headers, $rows);
         $rowsCount = $s->getTableRowCount($tableName);
