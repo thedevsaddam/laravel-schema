@@ -16,7 +16,7 @@ $ composer require thedevsaddam/laravel-schema
 ```
 Install manually (add the line to composer.json file)
 ``` bash
-"thedevsaddam/laravel-schema": "1.0.*"
+"thedevsaddam/laravel-schema": "^1.0"
 ```
 Open your terminal and hit the command
 ```bash
