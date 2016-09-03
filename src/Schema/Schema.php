@@ -6,7 +6,7 @@
  * Time: 12:10 PM
  */
 
-namespace Thedevsaddam\LaravelSchema;
+namespace Thedevsaddam\LaravelSchema\Schema;
 
 use DB;
 use Illuminate\Pagination\Paginator;

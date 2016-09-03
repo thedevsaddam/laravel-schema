@@ -2,9 +2,9 @@
 
 namespace Thedevsaddam\LaravelSchema\Console\Commands;
 
-use Illuminate\Console\Command;
 use DB;
-use Thedevsaddam\LaravelSchema\Schema;
+use Illuminate\Console\Command;
+use Thedevsaddam\LaravelSchema\Schema\Schema;
 
 
 class ListSchema extends Command

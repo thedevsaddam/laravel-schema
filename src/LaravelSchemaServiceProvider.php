@@ -7,10 +7,11 @@ use Illuminate\Support\ServiceProvider;
 class LaravelSchemaServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        'Thedevsaddam\LaravelSchema\Console\Commands\SimpleSchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\ShowSchema',
+        'Thedevsaddam\LaravelSchema\Console\Commands\HelpSchema',
         'Thedevsaddam\LaravelSchema\Console\Commands\ListSchema',
         'Thedevsaddam\LaravelSchema\Console\Commands\QuerySchema',
+        'Thedevsaddam\LaravelSchema\Console\Commands\ShowSchema',
+        'Thedevsaddam\LaravelSchema\Console\Commands\SimpleSchema',
         'Thedevsaddam\LaravelSchema\Console\Commands\TableSchema',
     ];
 
