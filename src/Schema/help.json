@@ -1,5 +1,5 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.4",
   "help": {
     "Simple": "Simple will display the tables and their total number of rows.\n",
     "List": "List schema takes an argument as table name (optional).\n",
