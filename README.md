@@ -81,7 +81,7 @@ Note: Provide first argument as **page number** (integer [default is 1]), second
 See the example below:
 
 ```bash
-php artisan schema:table countries 4 25 id:desc
+php artisan schema:table countries 4 id:desc 25
 ```
 
 To perform raw sql query
