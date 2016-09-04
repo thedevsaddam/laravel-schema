@@ -11,12 +11,6 @@ namespace Thedevsaddam\LaravelSchema\Schema\Grammar;
 
 interface GrammarContract
 {
-    public function setConnection($connection);
-
-    public function getHeaders();
-
-    public function getBody();
-
     public function getTables();
 
     public function getColumns($tableName);
