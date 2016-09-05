@@ -23,9 +23,12 @@ class TableSchema extends Command
      */
     protected $description = 'Display connected database schema table definition';
 
-    public function __construct()
+    private $schema;
+
+    public function __construct(Schema $schema)
     {
         parent::__construct();
+        $this->schema = $schema;
     }
 
     /**
@@ -44,12 +47,11 @@ class TableSchema extends Command
      */
     public function showSchemaDefinitionInTable()
     {
-        //TODO: need to refactor the code
-        $s = new Schema();
-        $tables = $s->getTables();
+        $tables = $this->schema->databaseWrapper->getTables();
 
         if (!count($tables)) {
             $this->warn('Database does not contain any table');
+            return false;
         }
 
         $tableName = $this->argument('tableName');
@@ -66,7 +68,7 @@ class TableSchema extends Command
         $page = (!empty($this->argument('page'))) ? $this->argument('page') : 1;
         $limit = (!empty($this->argument('limit'))) ? $this->argument('limit') : 15;
         $orderBy = (!empty($this->argument('orderBy'))) ? $this->argument('orderBy') : null;
-        $columns = $s->getTableColumns($tableName);
+        $columns = $this->schema->databaseWrapper->getColumns($tableName);
         $headers = array_map(function ($column) {
             return $column['Field'];
         }, $columns);
@@ -87,9 +89,9 @@ class TableSchema extends Command
             }
         }
 
-        $rows = $s->getPaginatedData($tableName, $page, $limit, $attributeName, $order)['data'];
+        $rows = $this->schema->getPaginatedData($tableName, $page, $limit, $attributeName, $order)['data'];
         $body = $this->makeTableBody($headers, $rows);
-        $rowsCount = $s->getTableRowCount($tableName);
+        $rowsCount = $this->schema->getTableRowCount($tableName);
         $this->info($tableName . ' (rows ' . $rowsCount . ')');
         $this->table($headers, $body);
         return false;
@@ -105,12 +107,12 @@ class TableSchema extends Command
     {
         $body = [];
         for ($i = 0; $i < count($rows); $i++) {
-            $bindedRow = [];
+            $row = [];
             for ($j = 0; $j < count($headers); $j++) {
                 $column = $headers[$j];
-                $bindedRow[$j] = str_limit($rows[$i]->$column, 10, '');
+                $row[$j] = str_limit($rows[$i]->$column, 10, '');
             }
-            $body[$i] = $bindedRow;
+            $body[$i] = $row;
         }
         return $body;
     }
