@@ -4,7 +4,6 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 
 use DB;
 use Illuminate\Console\Command;
-use Thedevsaddam\LaravelSchema\Schema\Schema;
 
 
 class HelpSchema extends Command

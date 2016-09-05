@@ -3,7 +3,7 @@
   "help": {
     "Simple": "Simple will display the tables and their total number of rows.\n",
     "List": "List schema takes an argument as table name (optional).\n",
-    "Query": "Query takes an argument as string. Put your raw sql query \n in the string to perform custom query.\n",
+    "Query": "Query takes an argument as string. Put your raw sql query \nin the string to perform custom query.\n",
     "Show": "Show method displays all the available tables in database in a tabular form.\nYou can pass an argument as table name to display an individual table.\n",
     "Table": "Provide first argument as table name and display tables first 15 rows in ascending order.\nProvide second argument as page number.\nProvide third argument as orderBy clause e.g: columnName:asc or columnName:desc to change ordering against a column.\nProvide fourth argument an integer number to display rows limit (default is 15)\n"
   }

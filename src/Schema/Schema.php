@@ -8,8 +8,6 @@
 
 namespace Thedevsaddam\LaravelSchema\Schema;
 
-use DB;
-use Illuminate\Pagination\Paginator;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\MysqlWrapper;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\SqliteWrapper;
 
