@@ -4,6 +4,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 
 use DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Debug\Dumper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
 
 
@@ -23,9 +24,12 @@ class QuerySchema extends Command
      */
     protected $description = 'Raw sql query to database';
 
-    public function __construct()
+    private $schema;
+
+    public function __construct(Schema $schema)
     {
         parent::__construct();
+        $this->schema = $schema;
     }
 
     /**
@@ -50,10 +54,9 @@ class QuerySchema extends Command
             return false;
         }
 
-        $s = new Schema();
-        $result = $s->rawQuery($rawQuery);
+         $result = $this->schema->rawQuery($rawQuery);
         if (!!$result) {
-            dd($result);
+            (new Dumper)->dump($result);
         }
         $this->info('Query executed successfully!');
     }
