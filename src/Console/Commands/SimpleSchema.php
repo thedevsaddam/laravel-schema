@@ -49,6 +49,7 @@ class SimpleSchema extends Command
     {
         if (!count($this->schema->databaseWrapper->getTables())) {
             $this->warn('Database does not contain any table');
+            return false;
         }
         $headers = ['Table Name', 'Rows'];
         $body = [];
