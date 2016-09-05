@@ -23,9 +23,12 @@ class ShowSchema extends Command
      */
     protected $description = 'Display connected database schema information in tabular form';
 
-    public function __construct()
+    private $schema;
+
+    public function __construct(Schema $schema)
     {
         parent::__construct();
+        $this->schema = $schema;
     }
 
     /**
@@ -44,8 +47,7 @@ class ShowSchema extends Command
      */
     public function showSchemaInTable()
     {
-        $s = new Schema();
-        $tables = $s->getTables();
+        $tables = $this->schema->databaseWrapper->getTables();
         $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
 
         if (!count($tables)) {
@@ -54,17 +56,19 @@ class ShowSchema extends Command
 
         $tableName = $this->argument('tableName');
         if (!empty($tableName)) {
-            if (!in_array($tableName, $tables))
-                return $this->warn('Table name is not correct!');
+            if (!in_array($tableName, $tables)) {
+                $this->warn('Table name is not correct!');
+                return false;
+            }
 
-            $body = $s->getTableColumns($tableName);
-            $rowsCount = $s->getTableRowCount($tableName);
+            $body = $this->schema->databaseWrapper->getColumns($tableName);
+            $rowsCount = $this->schema->getTableRowCount($tableName);
             $this->info($tableName . ' (rows: ' . $rowsCount . ')');
             $this->table($headers, $body);
-            return;
+            return true;
         }
 
-        foreach ($s->getSchema() as $key => $value) {
+        foreach ($this->schema->databaseWrapper->getSchema() as $key => $value) {
             $this->info($key . ' (rows: ' . $value['rowsCount'] . ')');
             $this->table($headers, $value['attributes']);
             $this->line('');

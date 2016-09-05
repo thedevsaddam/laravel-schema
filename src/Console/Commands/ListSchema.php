@@ -54,8 +54,10 @@ class ListSchema extends Command
 
         $tableName = $this->argument('tableName');
         if (!empty($tableName)) {
-            if (!in_array($tableName, $tables))
-                return $this->warn('Table name is not correct!');
+            if (!in_array($tableName, $tables)) {
+                $this->warn('Table name is not correct!');
+                return false;
+            }
 
             $attributes = $this->schema->databaseWrapper->getColumns($tableName);
             $rowsCount = $this->schema->getTableRowCount($tableName);
