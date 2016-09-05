@@ -11,8 +11,14 @@ namespace Thedevsaddam\LaravelSchema\Schema\Wrapper;
 
 use Thedevsaddam\LaravelSchema\Schema\BaseSchema;
 
-class SqliteWrapper extends BaseSchema implements WrapperContract
+class SqliteWrapper implements WrapperContract
 {
+    private $database;
+
+    public function __construct(BaseSchema $baseSchema)
+    {
+        $this->database = $baseSchema;
+    }
 
     public function getTables()
     {

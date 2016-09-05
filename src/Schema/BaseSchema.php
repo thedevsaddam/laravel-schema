@@ -17,13 +17,13 @@ abstract class BaseSchema
      * Database instance
      * @var
      */
-    protected $database;
+    public $database;
 
     /**
      * Connection name
      * @var
      */
-    protected $connection;
+    public $connection;
 
     protected $schema = [];
 
@@ -40,7 +40,7 @@ abstract class BaseSchema
      */
     public function setConnection($connection)
     {
-        $this->connection = $connection;
+        $this->database->connection($connection);
         return $this;
     }
 

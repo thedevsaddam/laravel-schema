@@ -11,13 +11,20 @@ namespace Thedevsaddam\LaravelSchema\Schema\Wrapper;
 
 use Thedevsaddam\LaravelSchema\Schema\BaseSchema;
 
-class MysqlWrapper extends BaseSchema implements WrapperContract
+class MysqlWrapper implements WrapperContract
 {
+
+    protected $baseSchema;
+
+    public function __construct(BaseSchema $baseSchema)
+    {
+        $this->baseSchema = $baseSchema;
+    }
 
     public function getTables()
     {
-        $tables = $this->database->select('SHOW TABLES');
-        $attribute = 'Tables_in_' . $this->getDatabaseName();
+        $tables = $this->baseSchema->database->select('SHOW TABLES');
+        $attribute = 'Tables_in_' . $this->baseSchema->getDatabaseName();
         return array_map(function ($table) use ($attribute) {
             return $table->$attribute;
         }, $tables);
@@ -25,7 +32,7 @@ class MysqlWrapper extends BaseSchema implements WrapperContract
 
     public function getColumns($tableName)
     {
-        return $this->transformColumns($this->database->select("SHOW COLUMNS FROM " . $tableName));
+        return $this->transformColumns($this->baseSchema->database->select("SHOW COLUMNS FROM " . $tableName));
     }
 
     public function getSchema()
@@ -33,7 +40,7 @@ class MysqlWrapper extends BaseSchema implements WrapperContract
         foreach ($this->getTables() as $table) {
             $columns = $this->getColumns($table);
             $this->schema[$table]['attributes'] = $columns;
-            $this->schema[$table]['rowsCount'] = $this->getTableRowCount($table);
+            $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
         }
         return $this->schema;
     }
