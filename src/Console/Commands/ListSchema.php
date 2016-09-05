@@ -23,9 +23,12 @@ class ListSchema extends Command
      */
     protected $description = 'Display connected database schema information in list';
 
-    public function __construct()
+    private $schema;
+
+    public function __construct(Schema $schema)
     {
         parent::__construct();
+        $this->schema = $schema;
     }
 
     /**
@@ -44,8 +47,7 @@ class ListSchema extends Command
      */
     public function showSchemaInList()
     {
-        $s = new Schema();
-        $tables = $s->getTables();
+        $tables = $this->schema->databaseWrapper->getTables();
         if (!count($tables)) {
             $this->warn('Database does not contain any table');
         }
@@ -55,16 +57,16 @@ class ListSchema extends Command
             if (!in_array($tableName, $tables))
                 return $this->warn('Table name is not correct!');
 
-            $attributes = $s->getTableColumns($tableName);
-            $rowsCount = $s->getTableRowCount($tableName);
+            $attributes = $this->schema->databaseWrapper->getColumns($tableName);
+            $rowsCount = $this->schema->getTableRowCount($tableName);
             $this->info($tableName . ' (rows: ' . $rowsCount . ')');
             foreach ($attributes as $attribute) {
                 $this->line('  ' . $attribute['Field'] . '  ' . $attribute['Type']);
             }
-            return;
+            return true;
         }
 
-        foreach ($s->getSchema() as $key => $value) {
+        foreach ($this->schema->databaseWrapper->getSchema() as $key => $value) {
             $this->info($key . ' (rows: ' . $value['rowsCount'] . ')');
             foreach ($value['attributes'] as $attribute) {
                 $this->line('  ' . $attribute['Field'] . '  ' . $attribute['Type']);
