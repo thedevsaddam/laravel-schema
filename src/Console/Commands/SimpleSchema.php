@@ -23,9 +23,12 @@ class SimpleSchema extends Command
      */
     protected $description = 'Display connected database table list';
 
-    public function __construct()
+    private $schema;
+
+    public function __construct(Schema $schema)
     {
         parent::__construct();
+        $this->schema = $schema;
     }
 
     /**
@@ -44,13 +47,12 @@ class SimpleSchema extends Command
      */
     public function showSchemaInSimpleTable()
     {
-        $s = new Schema();
-        if (!count($s->getTables())) {
+        if (!count($this->schema->databaseWrapper->getTables())) {
             $this->warn('Database does not contain any table');
         }
         $headers = ['Table Name', 'Rows'];
         $body = [];
-        foreach ($s->getSchema() as $key => $value) {
+        foreach ($this->schema->databaseWrapper->getSchema() as $key => $value) {
             $body[] = [ $key,   $value['rowsCount']];
         }
         $this->table($headers, $body);
