@@ -6,26 +6,13 @@
  * Time: 9:48 PM
  */
 
-namespace Thedevsaddam\LaravelSchema\Schema\Grammar;
+namespace Thedevsaddam\LaravelSchema\Schema\Wrapper;
 
 
 use Thedevsaddam\LaravelSchema\Schema\BaseSchema;
 
-class MysqlGrammar extends BaseSchema implements GrammarContract
+class MysqlWrapper extends BaseSchema implements WrapperContract
 {
-    private $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
-
-    private $body = [];
-
-    public function getHeaders()
-    {
-        return $this->headers;
-    }
-
-    public function getBody()
-    {
-        return $this->body;
-    }
 
     public function getTables()
     {

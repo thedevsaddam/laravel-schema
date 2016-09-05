@@ -131,7 +131,7 @@ class Schema
     }
 
 
-    /**
+    /**f
      * Fetch data form table using pagination
      * @param $tableName
      * @param int $page

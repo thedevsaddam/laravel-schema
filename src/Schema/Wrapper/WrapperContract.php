@@ -6,10 +6,10 @@
  * Time: 9:30 PM
  */
 
-namespace Thedevsaddam\LaravelSchema\Schema\Grammar;
+namespace Thedevsaddam\LaravelSchema\Schema\Wrapper;
 
 
-interface GrammarContract
+interface WrapperContract
 {
     public function getTables();
 
