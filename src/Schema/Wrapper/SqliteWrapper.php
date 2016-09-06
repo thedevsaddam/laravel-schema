@@ -13,16 +13,16 @@ use Thedevsaddam\LaravelSchema\Schema\BaseSchema;
 
 class SqliteWrapper implements WrapperContract
 {
-    private $database;
+    protected $baseSchema;
 
     public function __construct(BaseSchema $baseSchema)
     {
-        $this->database = $baseSchema;
+        $this->baseSchema = $baseSchema;
     }
 
     public function getTables()
     {
-        $tables = $this->database->select("SELECT name FROM sqlite_master WHERE type='table'");
+        $tables = $this->baseSchema->database->select("SELECT name FROM sqlite_master WHERE type='table'");
         return array_map(function ($table) {
             return $table->name;
         }, $tables);
@@ -30,13 +30,18 @@ class SqliteWrapper implements WrapperContract
 
     public function getColumns($tableName)
     {
-        $columns = $this->database->select(\DB::raw("pragma table_info($tableName)"));
+        $columns = $this->baseSchema->database->select(\DB::raw("pragma table_info($tableName)"));
         return $this->transformColumns($columns);
     }
 
     public function getSchema()
     {
-        // TODO: Implement getSchema() method.
+        foreach ($this->getTables() as $table) {
+            $columns = $this->getColumns($table);
+            $this->schema[$table]['attributes'] = $columns;
+            $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
+        }
+        return $this->schema;
     }
 
     /**
@@ -52,9 +57,8 @@ class SqliteWrapper implements WrapperContract
                 'Field' => $column->name,
                 'Type' => $column->type,
                 'Null' => $column->notnull,
-                'Key' => $column->Key,
+                'Key' => $column->pk,
                 'Default' => $column->dflt_value,
-                'Primary Key' => $column->pk
             ];
         }, $columns);
     }
