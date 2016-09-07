@@ -93,6 +93,6 @@ Query result will be dumped in console
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
 
-Note: Currently working with Mysql. Multiple database / connection facility coming soon...
+Note: Currently working with (1) Mysql (2) Sqlite and (3) PostgresSql. Multiple database / connection facility coming soon...
 
 Thank you :)
