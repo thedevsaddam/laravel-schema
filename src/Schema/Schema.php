@@ -15,6 +15,7 @@ use Thedevsaddam\LaravelSchema\Schema\Wrapper\SqliteWrapper;
 class Schema extends BaseSchema
 {
     public $databaseWrapper;
+    public $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
 
     public function __construct()
     {
@@ -24,9 +25,11 @@ class Schema extends BaseSchema
                 $this->databaseWrapper = new MysqlWrapper($this);
                 break;
             case 'sqlite':
+                $this->headers = ['CID', 'Field', 'Type', 'Null', 'Key', 'Default'];
                 $this->databaseWrapper = new SqliteWrapper($this);
                 break;
             case 'pgsql':
+                $this->headers = ['Field', 'Type', 'Null', 'Key', 'Default'];
                 $this->databaseWrapper = new PostgresWrapper($this);
                 break;
             default:

@@ -47,7 +47,7 @@ class ShowSchema extends Command
     public function showSchemaInTable()
     {
         $tables = $this->schema->databaseWrapper->getTables();
-        $headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Extra'];
+        $headers = $this->schema->headers;
 
         if (!count($tables)) {
             $this->warn('Database does not contain any table');
