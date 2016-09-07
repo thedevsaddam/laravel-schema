@@ -25,7 +25,7 @@ class PostgresWrapper implements WrapperContract
     {
         $tables = $this->baseSchema->database->select("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
         return array_map(function ($table) {
-            return $table;
+            return $table->table_name;
         }, $tables);
     }
 

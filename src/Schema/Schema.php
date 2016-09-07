@@ -9,6 +9,7 @@
 namespace Thedevsaddam\LaravelSchema\Schema;
 
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\MysqlWrapper;
+use Thedevsaddam\LaravelSchema\Schema\Wrapper\PostgresWrapper;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\SqliteWrapper;
 
 class Schema extends BaseSchema
@@ -24,6 +25,9 @@ class Schema extends BaseSchema
                 break;
             case 'sqlite':
                 $this->databaseWrapper = new SqliteWrapper($this);
+                break;
+            case 'pgsql':
+                $this->databaseWrapper = new PostgresWrapper($this);
                 break;
             default:
                 $this->databaseWrapper = new MysqlWrapper($this);
