@@ -29,7 +29,17 @@ Add the following line to config/app.php file
 Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 ```
 
-### **Usage**
+### **Available commands / Features**
+1. `php artisan schema:help` Display the available commands and usages
+1. `php artisan schema:simple` Display overall tables with total rows count
+1. `php artisan schema:list` Display all the available tables schema information in list (_please see details below_).
+1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
+1. `php artisan schema:table yourTableName` Display a table's paginated data (_please see details below_).
+1. `php artisan schema:query "wirte your raw sql query in double quote"` Perform a sql query.
+1. `php artisan schema:model Namespaced\ModelName` Display a specific model schema structure (_coming soon_).
+1. `php artisan schema:table Namespaced\ModelName` Display a specific model's paginated data (_coming soon_).
+
+### **Usage in details**
 To see the schema information in tabular form
 ```bash
  php artisan schema:show
@@ -95,8 +105,8 @@ Query result will be dumped in console
 
 ### TODO
 1. Schema information from namespaced model
-2. Support for SQL Server
-3. Support for multiple connection
-4. Code refactoring
+1. Support for SQL Server
+1. Support for multiple connection
+1. Code refactoring
 
 Thank you :)
