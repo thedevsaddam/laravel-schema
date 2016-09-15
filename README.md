@@ -93,6 +93,10 @@ Query result will be dumped in console
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
 
-Note: Currently working with (1) Mysql (2) Sqlite and (3) PostgresSql. Multiple database / connection facility coming soon...
+### TODO
+1. Schema information from namespaced model
+2. Support for SQL Server
+3. Support for multiple connection
+4. Code refactoring
 
 Thank you :)
