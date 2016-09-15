@@ -36,8 +36,8 @@ Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
 1. `php artisan schema:table yourTableName` Display a table's paginated data (_please see details below_).
 1. `php artisan schema:query "wirte your raw sql query in double quote"` Perform a sql query.
-1. `php artisan schema:model Namespaced\ModelName` Display a specific model schema structure (_coming soon_).
-1. `php artisan schema:table Namespaced\ModelName` Display a specific model's paginated data (_coming soon_).
+1. `php artisan schema:model Namespace\ModelName` Display a specific model schema structure (_coming soon_).
+1. `php artisan schema:table Namespace\ModelName` Display a specific model's paginated data (_coming soon_).
 
 ### **Usage in details**
 To see the schema information in tabular form
@@ -108,5 +108,8 @@ Query result will be dumped in console
 1. Support for SQL Server
 1. Support for multiple connection
 1. Code refactoring
+
+### **License**
+The **laravel-schema** is a open-source software licensed under the [MIT License](LICENSE.md).
 
 Thank you :)
