@@ -3,11 +3,13 @@
 namespace Thedevsaddam\LaravelSchema\Console\Commands;
 
 use Illuminate\Console\Command;
+use Thedevsaddam\LaravelSchema\Schema\Helper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
 
 
 class ListSchema extends Command
 {
+    use Helper;
     /**
      * The name and signature of the console command.
      *
@@ -53,6 +55,9 @@ class ListSchema extends Command
 
         $tableName = $this->argument('tableName');
         if (!empty($tableName)) {
+            if ($this->isNamespaceModel($tableName)) {
+                $tableName = $this->tableNameFromModel($tableName);
+            }
             if (!in_array($tableName, $tables)) {
                 $this->warn('Table name is not correct!');
                 return false;
