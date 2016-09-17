@@ -34,10 +34,8 @@ Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 1. `php artisan schema:simple` Display overall tables with total rows count
 1. `php artisan schema:list` Display all the available tables schema information in list (_please see details below_).
 1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
-1. `php artisan schema:table yourTableName` Display a table's paginated data (_please see details below_).
+1. `php artisan schema:table yourTableName or Namespace\\Model` Display a table's paginated data (_please see details below_).
 1. `php artisan schema:query "wirte your raw sql query in double quote"` Perform a sql query.
-1. `php artisan schema:model Namespace\ModelName` Display a specific model schema structure (_coming soon_).
-1. `php artisan schema:table Namespace\ModelName` Display a specific model's paginated data (_coming soon_).
 
 ### **Usage in details**
 To see the schema information in tabular form
@@ -51,7 +49,7 @@ Schema information in tabular form
 
 If you want to see a specific table then pass table  name as first argument
 ```bash
- php artisan schema:show tableName
+ php artisan schema:show tableName or Namespace\\Model
 ```
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/tabular-single.png)
@@ -80,7 +78,7 @@ Tables name with rows count
 
 To see the table definition
 ```bash
- php artisan schema:table tableName
+ php artisan schema:table tableName or Namespace\\Model
 ```
 
 Table definition with default page and limit
@@ -89,6 +87,8 @@ Table definition with default page and limit
 
 Note: Provide first argument as **page number** (integer [default is 1]), second argument **columnName:order** for ordering the table(order=asc or desc [default is 'ascending order']), third argument as **limit** (integer [default is 15]).
 See the example below:
+
+**You can pass Namespace\\Model instead of table name**
 
 ```bash
 php artisan schema:table countries 4 id:desc 25
@@ -104,7 +104,6 @@ Query result will be dumped in console
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
 
 ### TODO
-1. Schema information from namespaced model
 1. Support for SQL Server
 1. Support for multiple connection
 1. Code refactoring
