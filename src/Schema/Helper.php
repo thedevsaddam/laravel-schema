@@ -30,7 +30,7 @@ trait Helper
      */
     public function isNamespaceModel($namespaceModel)
     {
-        return (strpos($namespaceModel, "\\") !== false) ? true : false;
+        return str_contains($namespaceModel, "\\");
     }
 
 }
