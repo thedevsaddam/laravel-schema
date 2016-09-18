@@ -118,11 +118,12 @@ class TableSchema extends Command
     private function makeTableBody($headers, $rows)
     {
         $body = [];
+        $widthOfTableCell = ($this->option('w'))? $this->option('w') : 10;
         for ($i = 0; $i < count($rows); $i++) {
             $row = [];
             for ($j = 0; $j < count($headers); $j++) {
                 $column = $headers[$j];
-                $row[$j] = str_limit($rows[$i]->$column, 10, '');
+                $row[$j] = str_limit($rows[$i]->$column, $widthOfTableCell, '');
             }
             $body[$i] = $row;
         }
@@ -137,6 +138,7 @@ class TableSchema extends Command
             ['p', 'p', InputOption::VALUE_OPTIONAL, 'Page number'],
             ['l', 'l', InputOption::VALUE_OPTIONAL, 'Limit per page'],
             ['o', 'o', InputOption::VALUE_OPTIONAL, 'Order result against attribute'],
+            ['w', 'w', InputOption::VALUE_OPTIONAL, 'Width of the tabe cell in char'],
         ];
     }
 
