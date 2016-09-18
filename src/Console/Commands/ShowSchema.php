@@ -5,6 +5,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 use Illuminate\Console\Command;
 use Thedevsaddam\LaravelSchema\Schema\Helper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class ShowSchema extends Command
@@ -15,7 +16,7 @@ class ShowSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:show {tableName?}';
+    protected $name = 'schema:show';
 
     /**
      * The console command description.
@@ -48,6 +49,12 @@ class ShowSchema extends Command
      */
     public function showSchemaInTable()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+        }
+
         $tables = $this->schema->databaseWrapper->getTables();
         $headers = $this->schema->headers;
 
@@ -55,8 +62,8 @@ class ShowSchema extends Command
             $this->warn('Database does not contain any table');
         }
 
-        $tableName = $this->argument('tableName');
-        if (!empty($tableName)) {
+        $tableName = $this->option('t');
+        if ($tableName) {
             if ($this->isNamespaceModel($tableName)) {
                 $tableName = $this->tableNameFromModel($tableName);
             }
@@ -77,6 +84,14 @@ class ShowSchema extends Command
             $this->table($headers, $value['attributes']);
             $this->line('');
         }
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
+            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+        ];
     }
 
 }

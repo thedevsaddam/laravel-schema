@@ -20,10 +20,10 @@ class Schema extends BaseSchema
     public function __construct()
     {
         parent::__construct();
-        $this->switchConnection();
+        $this->switchWrapper();
     }
 
-    public function switchConnection()
+    public function switchWrapper()
     {
         switch ($this->connection) {
             case 'mysql':
