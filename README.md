@@ -86,7 +86,7 @@ Tables name with rows count
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/simple.png)
 
-_Note: You may pass `--c=connectionName` or `--c connectionName` to display a specific connection schema info_
+_Note: You may pass `--c=connectionName` or `-c connectionName` to display a specific connection schema info_
 
 <hr/>
 
