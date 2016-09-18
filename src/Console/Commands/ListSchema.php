@@ -5,6 +5,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 use Illuminate\Console\Command;
 use Thedevsaddam\LaravelSchema\Schema\Helper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class ListSchema extends Command
@@ -15,7 +16,7 @@ class ListSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:list {tableName?}';
+    protected $name = 'schema:list';
 
     /**
      * The console command description.
@@ -48,12 +49,18 @@ class ListSchema extends Command
      */
     public function showSchemaInList()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+        }
+
         $tables = $this->schema->databaseWrapper->getTables();
         if (!count($tables)) {
             $this->warn('Database does not contain any table');
         }
 
-        $tableName = $this->argument('tableName');
+        $tableName = $this->option('t');
         if (!empty($tableName)) {
             if ($this->isNamespaceModel($tableName)) {
                 $tableName = $this->tableNameFromModel($tableName);
@@ -79,6 +86,14 @@ class ListSchema extends Command
             }
             $this->line('');
         }
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
+            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+        ];
     }
 
 }
