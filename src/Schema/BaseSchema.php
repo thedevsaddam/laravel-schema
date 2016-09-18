@@ -30,7 +30,7 @@ abstract class BaseSchema
     public function __construct()
     {
         $this->connection = DB::connection()->getName();
-        $this->database = DB::connection($this->connection);
+        $this->setConnection($this->connection);
     }
 
     /**
@@ -40,7 +40,8 @@ abstract class BaseSchema
      */
     public function setConnection($connection)
     {
-        $this->database->connection($connection);
+        $this->connection = $connection;
+        $this->database = DB::connection($this->connection);
         return $this;
     }
 
