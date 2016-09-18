@@ -101,7 +101,7 @@ Table definition with default page and limit
 
 Avaliable Options in **table**:
 
-* `--t=tableName` or `-t tableName` to provide table name or Namespace\\Model (e.g: --t=App\\User or --t=users).
+* `--t=tableName` or `-t tableName` to provide table name or Namespace\\\Model (e.g: --t=App\\\User or --t=users).
 * `--p=pageNumber` or `-p PageNumber` to provide current page which you want to see
 * `--o=orderBy` or `-o orderBy` to provide orderBy clause against a column (e.g: --o=id:desc or --o=id:asc [default asc]).
 * `--l=rowsLimitPerPage` or `-l rowsLimitPerPage` to provide number of rows you want to display (e.g: --l=20).
