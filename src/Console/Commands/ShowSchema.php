@@ -89,8 +89,8 @@ class ShowSchema extends Command
     protected function getOptions()
     {
         return [
-            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
-            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+            ['t', 't', InputOption::VALUE_OPTIONAL, 'Table name'],
+            ['c', 'c', InputOption::VALUE_OPTIONAL, 'Connection name'],
         ];
     }
 

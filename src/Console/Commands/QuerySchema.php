@@ -70,8 +70,8 @@ class QuerySchema extends Command
     protected function getOptions()
     {
         return [
-            ['q', null, InputOption::VALUE_OPTIONAL, 'Raw sql query'],
-            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+            ['q', 'q', InputOption::VALUE_OPTIONAL, 'Raw sql query'],
+            ['c', 'c', InputOption::VALUE_OPTIONAL, 'Connection name'],
         ];
     }
 
