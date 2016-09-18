@@ -106,6 +106,7 @@ Avaliable Options in **table**:
 * `--o=orderBy` or `-p orderBy` to provide orderBy clause against a column (e.g: --o=id:desc or --o=id:asc [default asc]).
 * `--l=rowsLimitPerPage` or `-l rowsLimitPerPage` to provide number of rows you want to display (e.g: --l=20).
 * `--c=connectionName` or `-c connectionName` to provide connection name
+* `--w=widthOfTableCell` or `-c widthOfTableCell` to provide character length of cell to show in tables (numeric [default=10])).
 
 
 ```bash
