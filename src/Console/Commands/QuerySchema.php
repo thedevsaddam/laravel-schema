@@ -5,6 +5,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Debug\Dumper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class QuerySchema extends Command
@@ -47,6 +48,12 @@ class QuerySchema extends Command
      */
     public function performQuery()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+        }
+
         $rawQuery = $this->argument('rawQuery');
         if (empty($rawQuery)) {
             $this->warn('Please provide raw sql query as string (in single/double quote)!');
@@ -58,6 +65,13 @@ class QuerySchema extends Command
             (new Dumper)->dump($result);
         }
         $this->info('Query executed successfully!');
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+        ];
     }
 
 }
