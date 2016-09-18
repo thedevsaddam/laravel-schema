@@ -132,7 +132,7 @@ class TableSchema extends Command
     protected function getOptions()
     {
         return [
-            ['t', null, InputOption::VALUE_REQUIRED, 'Table name'],
+            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
             ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
             ['p', null, InputOption::VALUE_OPTIONAL, 'Page number'],
             ['l', null, InputOption::VALUE_OPTIONAL, 'Limit per page'],
