@@ -5,6 +5,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 use Illuminate\Console\Command;
 use Thedevsaddam\LaravelSchema\Schema\Helper;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class TableSchema extends Command
@@ -15,7 +16,7 @@ class TableSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:table {tableName?} {page?} {orderBy?} {limit?}';
+    protected $name = 'schema:table {tableName?} {page?} {orderBy?} {limit?}';
 
     /**
      * The console command description.
@@ -48,6 +49,12 @@ class TableSchema extends Command
      */
     public function showSchemaDefinitionInTable()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+        }
+
         $tables = $this->schema->databaseWrapper->getTables();
 
         if (!count($tables)) {
@@ -55,7 +62,7 @@ class TableSchema extends Command
             return false;
         }
 
-        $tableName = $this->argument('tableName');
+        $tableName = $this->option('t');
         if (empty($tableName)) {
             $this->warn('Table name is required!');
             return false;
@@ -70,9 +77,9 @@ class TableSchema extends Command
             return false;
         }
 
-        $page = (!empty($this->argument('page'))) ? $this->argument('page') : 1;
-        $limit = (!empty($this->argument('limit'))) ? $this->argument('limit') : 15;
-        $orderBy = (!empty($this->argument('orderBy'))) ? $this->argument('orderBy') : null;
+        $page = (!empty($this->option('p'))) ? $this->option('p') : 1;
+        $limit = (!empty($this->option('l'))) ? $this->option('l') : 15;
+        $orderBy = (!empty($this->option('o'))) ? $this->option('o') : null;
         $columns = $this->schema->databaseWrapper->getColumns($tableName);
         $headers = array_map(function ($column) {
             return $column['Field'];
@@ -120,6 +127,17 @@ class TableSchema extends Command
             $body[$i] = $row;
         }
         return $body;
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['t', null, InputOption::VALUE_REQUIRED, 'Table name'],
+            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+            ['p', null, InputOption::VALUE_OPTIONAL, 'Page number'],
+            ['l', null, InputOption::VALUE_OPTIONAL, 'Limit per page'],
+            ['o', null, InputOption::VALUE_OPTIONAL, 'Order result against attribute'],
+        ];
     }
 
 }
