@@ -24,7 +24,7 @@ class SqlServerWrapper implements WrapperContract
     public function getTables()
     {
         $databaseName = $this->baseSchema->getDatabaseName();
-        $tables = $this->baseSchema->database->select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='{$databaseName}'");
+        $tables = $this->baseSchema->database->select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='$databaseName'");
         return array_map(function ($table) {
             return $table->TABLE_NAME;
         }, $tables);
@@ -32,7 +32,7 @@ class SqlServerWrapper implements WrapperContract
 
     public function getColumns($tableName)
     {
-        return $this->transformColumns($this->baseSchema->database->select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{$tableName}'ORDER BY ORDINAL_POSITION"));
+        return $this->transformColumns($this->baseSchema->database->select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'ORDER BY ORDINAL_POSITION"));
     }
 
     public function getSchema()
