@@ -4,6 +4,7 @@ namespace Thedevsaddam\LaravelSchema\Console\Commands;
 
 use Illuminate\Console\Command;
 use Thedevsaddam\LaravelSchema\Schema\Schema;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class SimpleSchema extends Command
@@ -13,7 +14,7 @@ class SimpleSchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:simple';
+    protected $name = 'schema:simple';
 
     /**
      * The console command description.
@@ -46,6 +47,12 @@ class SimpleSchema extends Command
      */
     public function showSchemaInSimpleTable()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+        }
+
         if (!count($this->schema->databaseWrapper->getTables())) {
             $this->warn('Database does not contain any table');
             return false;
@@ -56,6 +63,14 @@ class SimpleSchema extends Command
             $body[] = [ $key,   $value['rowsCount']];
         }
         $this->table($headers, $body);
+    }
+
+    protected function getOptions()
+    {
+        return [
+            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
+            ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
+        ];
     }
 
 }
