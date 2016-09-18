@@ -15,7 +15,7 @@ class QuerySchema extends Command
      *
      * @var string
      */
-    protected $signature = 'schema:query {rawQuery?}';
+    protected $name = 'schema:query';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class QuerySchema extends Command
             $this->schema->switchWrapper();
         }
 
-        $rawQuery = $this->argument('rawQuery');
+        $rawQuery = $this->option('q');
         if (empty($rawQuery)) {
             $this->warn('Please provide raw sql query as string (in single/double quote)!');
             return false;
@@ -70,6 +70,7 @@ class QuerySchema extends Command
     protected function getOptions()
     {
         return [
+            ['q', null, InputOption::VALUE_OPTIONAL, 'Raw sql query'],
             ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
         ];
     }
