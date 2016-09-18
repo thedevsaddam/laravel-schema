@@ -1,10 +1,10 @@
 {
-  "version": "1.0.4",
+  "version": "1.1.2",
   "help": {
-    "Simple": "Simple will display the tables and their total number of rows.\n",
-    "List": "List schema takes an argument as table name (optional).\n",
-    "Query": "Query takes an argument as string. Put your raw sql query \nin the string to perform custom query.\n",
-    "Show": "Show method displays all the available tables in database in a tabular form.\nYou can pass an argument as table name to display an individual table.\n",
-    "Table": "Provide first argument as table name and display tables first 15 rows in ascending order.\nProvide second argument as page number.\nProvide third argument as orderBy clause e.g: columnName:asc or columnName:desc to change ordering against a column.\nProvide fourth argument an integer number to display rows limit (default is 15)\n"
+    "Simple": "Simple will display the tables and their total number of rows.\nAvailable Options:\n 1. --c=connectionName\n",
+    "List": "List tables with schema information.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n",
+    "Query": "Perform raw query.\n 1. --c=connectionName\n 2. --q=yourRawSqlQuery",
+    "Show": "Display all the available tables in a tabular form.\nAvailable Options:.\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n",
+    "Table": "Display table paginated rows.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n 3. --p=pageNumber(numeric [default=1])\n 4. --l=limitOfRowsPerPage(numeric [default=15])\n 5. --o=orderBy (e.g: --o=id:desc or --o=id:asc [default=asc])\n Note: For all commands you can provide --option=value or --option value"
   }
 }
