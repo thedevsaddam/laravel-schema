@@ -68,7 +68,6 @@ class SimpleSchema extends Command
     protected function getOptions()
     {
         return [
-            ['t', null, InputOption::VALUE_OPTIONAL, 'Table name'],
             ['c', null, InputOption::VALUE_OPTIONAL, 'Connection name'],
         ];
     }
