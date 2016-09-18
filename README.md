@@ -4,9 +4,6 @@ Laravel Schema
 
 This package will help to display database schema information from terminal.
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Software License][ico-license]](LICENSE.md)
 
 ----------
 
