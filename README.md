@@ -103,7 +103,7 @@ Avaliable Options in **table**:
 
 * `--t=tableName` or `-t tableName` to provide table name or Namespace\\Model (e.g: --t=App\\User or --t=users).
 * `--p=pageNumber` or `-p PageNumber` to provide current page which you want to see
-* `--o=orderBy` or `-p orderBy` to provide orderBy clause against a column (e.g: --o=id:desc or --o=id:asc [default asc]).
+* `--o=orderBy` or `-o orderBy` to provide orderBy clause against a column (e.g: --o=id:desc or --o=id:asc [default asc]).
 * `--l=rowsLimitPerPage` or `-l rowsLimitPerPage` to provide number of rows you want to display (e.g: --l=20).
 * `--c=connectionName` or `-c connectionName` to provide connection name
 * `--w=widthOfTableCell` or `-w widthOfTableCell` to provide character length of cell to show in tables (numeric [default=10]).
