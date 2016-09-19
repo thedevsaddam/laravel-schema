@@ -16,14 +16,14 @@ $ composer require thedevsaddam/laravel-schema
 ```
 Install manually (add the line to composer.json file)
 ``` bash
-"thedevsaddam/laravel-schema": "^1.0"
+"thedevsaddam/laravel-schema": "^2.0"
 ```
-Open your terminal and hit the command
+Then open your terminal and hit the command
 ```bash
 composer update
 ```
 
-Add the following line to config/app.php file
+Add the following line to config/app.php file's _providers_ array
 
 ```bash
 Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
@@ -32,9 +32,9 @@ Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 <hr/>
 
 ### **Available commands / Features**
-1. `php artisan schema:help` Display the available commands and usages
-1. `php artisan schema:simple` Display overall tables with total rows count
-1. `php artisan schema:list` Display all the available tables schema information in list (_please see details below_).
+1. `php artisan schema:help` Display the available commands and usages.
+1. `php artisan schema:simple` Display overall tables with total rows count.
+1. `php artisan schema:list` Display all the available tables. schema information in list (_please see details below_).
 1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
 1. `php artisan schema:table --t=yourTableName or --t=Namespace\\Model` Display a table's paginated data (_please see details below_).
 1. `php artisan schema:query --r="wirte your raw sql query in double quote"` Perform a sql query.
@@ -42,14 +42,14 @@ Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 <hr/>
 
 ### **Usage in details**
-To see the schema information in tabular form
+**Show Schema information in tabular form**
 ```bash
  php artisan schema:show
 ```
 
-Schema information in tabular form
+Example output: Schema information in tabular form
 
-![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/tabular.png)
+![Schema information in tabular form](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/tabular.png)
 
 If you want to see a specific table then pass table name or Namespace\\\Model
 ```bash
@@ -61,12 +61,12 @@ If you want to see a specific table then pass table name or Namespace\\\Model
 
 _Note: Same condition will be applied for tables **list** view_
 
-To see the schema information in list
+**Show Schema information in List**
 ```bash
  php artisan schema:list
 ```
 
-Schema information in list
+Example output: Schema information in list
 
 ![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/list.png)
 
@@ -75,29 +75,29 @@ Avaliable Options in **show** and **list**:
 * `--t=tableName` or `-t tableName` to provide table name or Namespace\\Model
 * `--c=connectionName` or `-c connectionName` to provide connection name
 
-<hr/>
 
-To see the tables name only
+
+**Show Table names and total rows**
 ```bash
  php artisan schema:simple
 ```
 
-Tables name with rows count
+Example output: Tables name with rows count
 
-![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/simple.png)
+![Tables name with rows count](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/simple.png)
 
 _Note: You may pass `--c=connectionName` or `-c connectionName` to display a specific connection schema info_
 
-<hr/>
 
-To see the table definition
+
+**Show table definition**
 ```bash
  php artisan schema:table --t=tableName or --t=Namespace\\Model
 ```
 
-Table definition with default page and limit
+Example output: Table definition with default page and limit
 
-![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/table-pagination.png)
+![Table definition with default page and limit](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/table-pagination.png)
 
 Avaliable Options in **table**:
 
@@ -113,16 +113,16 @@ Avaliable Options in **table**:
 php artisan schema:table --t=countries --p=4 --o=id:desc --l=25
 ```
 
-<hr/>
 
-To perform raw sql query
+
+**Perform raw sql query**
 ```bash
  php artisan schema:query --r="your sql query"
 ```
 
-Query result will be dumped in console
+Example output: Query result will be dumped in console
 
-![database info commandline](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
+![Query result will be dumped in console](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/raw-query.png)
 
 Avaliable Options in **query**:
 
