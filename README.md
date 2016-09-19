@@ -37,7 +37,7 @@ Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 1. `php artisan schema:list` Display all the available tables schema information in list (_please see details below_).
 1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
 1. `php artisan schema:table --t=yourTableName or --t=Namespace\\Model` Display a table's paginated data (_please see details below_).
-1. `php artisan schema:query --q="wirte your raw sql query in double quote"` Perform a sql query.
+1. `php artisan schema:query --r="wirte your raw sql query in double quote"` Perform a sql query.
 
 <hr/>
 
