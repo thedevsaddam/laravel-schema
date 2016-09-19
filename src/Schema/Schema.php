@@ -26,7 +26,8 @@ class Schema extends BaseSchema
 
     public function switchWrapper()
     {
-        switch ($this->connection) {
+        $driverName = $this->database->getDriverName();
+        switch ($driverName) {
             case 'mysql':
                 $this->databaseWrapper = new MysqlWrapper($this);
                 break;
