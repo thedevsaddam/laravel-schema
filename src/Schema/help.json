@@ -3,8 +3,8 @@
   "help": {
     "Simple": "Simple will display the tables and their total number of rows.\nAvailable Options:\n 1. --c=connectionName\n",
     "List": "List tables with schema information.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n",
-    "Query": "Perform raw query.\n 1. --c=connectionName\n 2. --r=yourRawSqlQuery",
+    "Query": "Perform raw query.\n 1. --c=connectionName\n 2. --r=yourRawSqlQuery\n",
     "Show": "Display all the available tables in a tabular form.\nAvailable Options:.\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n",
-    "Table": "Display table paginated rows.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n 3. --p=pageNumber(numeric [default=1])\n 4. --l=limitOfRowsPerPage(numeric [default=15])\n 5. --o=orderBy (e.g: --o=id:desc or --o=id:asc [default=asc])\n 6. --w=widthOfCell(char length in numeric [default = 10])\n\nNote:\n * For all commands you can provide --option=value or -option value\n * --c=connectionName is always optional [default=defaultConnectionName]."
+    "Table": "Display table paginated rows.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n 3. --p=pageNumber(numeric [default=1])\n 4. --l=limitOfRowsPerPage(numeric [default=15])\n 5. --o=orderBy (e.g: --o=id:desc or --o=id:asc [default=asc])\n 6. --w=widthOfCell(char length in numeric [default = 10])\n\nNote:\n * For all commands you can provide --option=value or -option value\n * --c=connectionName is always optional [default=defaultConnectionName].\n"
   }
 }
