@@ -117,7 +117,7 @@ php artisan schema:table --t=countries --p=4 --o=id:desc --l=25
 
 To perform raw sql query
 ```bash
- php artisan schema:query --q="your sql query"
+ php artisan schema:query --r="your sql query"
 ```
 
 Query result will be dumped in console
@@ -126,7 +126,7 @@ Query result will be dumped in console
 
 Avaliable Options in **query**:
 
-* `--q=yourRawQuery` or `-q yourRawQuery` to provide your raw sql query (e.g: --q="select * from someTable limit 20").
+* `--r=yourRawQuery` or `-r yourRawQuery` to provide your raw sql query (e.g: --r="select * from someTable limit 20").
 * `--c=connectionName` or `-c connectionName` to provide connection name (e.g: --c=mysql or -c sqlite)
 
 <hr/>
