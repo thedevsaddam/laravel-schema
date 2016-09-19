@@ -11,6 +11,7 @@ namespace Thedevsaddam\LaravelSchema\Schema;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\MysqlWrapper;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\PostgresWrapper;
 use Thedevsaddam\LaravelSchema\Schema\Wrapper\SqliteWrapper;
+use Thedevsaddam\LaravelSchema\Schema\Wrapper\SqlServerWrapper;
 
 class Schema extends BaseSchema
 {
@@ -36,6 +37,10 @@ class Schema extends BaseSchema
             case 'pgsql':
                 $this->headers = ['Field', 'Type', 'Null', 'Key', 'Default'];
                 $this->databaseWrapper = new PostgresWrapper($this);
+                break;
+            case 'sqlsrv':
+                $this->headers = ['Field', 'Type', 'Null', 'Key', 'Default', 'Char max len'];
+                $this->databaseWrapper = new SqlServerWrapper($this);
                 break;
             default:
                 $this->databaseWrapper = new MysqlWrapper($this);
