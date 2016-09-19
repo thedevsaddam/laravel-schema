@@ -118,12 +118,12 @@ class TableSchema extends Command
     private function makeTableBody($headers, $rows)
     {
         $body = [];
-        $widthOfTableCell = ($this->option('w'))? $this->option('w') : 10;
+        $tableCellWidth = ($this->option('w'))? $this->option('w') : 10;
         for ($i = 0; $i < count($rows); $i++) {
             $row = [];
             for ($j = 0; $j < count($headers); $j++) {
                 $column = $headers[$j];
-                $row[$j] = str_limit($rows[$i]->$column, $widthOfTableCell, '');
+                $row[$j] = str_limit($rows[$i]->$column, $tableCellWidth, '');
             }
             $body[$i] = $row;
         }
