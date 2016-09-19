@@ -1,5 +1,5 @@
 {
-  "version": "1.1.2",
+  "version": "2.0.0",
   "help": {
     "Simple": "Simple will display the tables and their total number of rows.\nAvailable Options:\n 1. --c=connectionName\n",
     "List": "List tables with schema information.\nAvailable Options:\n 1. --c=connectionName\n 2. --t=tableName or Namepace\\Model\n",
