@@ -54,7 +54,7 @@ class QuerySchema extends Command
             $this->schema->switchWrapper();
         }
 
-        $rawQuery = $this->option('q');
+        $rawQuery = $this->option('r');
         if (empty($rawQuery)) {
             $this->warn('Please provide raw sql query as string (in single/double quote)!');
             return false;
@@ -70,7 +70,7 @@ class QuerySchema extends Command
     protected function getOptions()
     {
         return [
-            ['q', 'q', InputOption::VALUE_OPTIONAL, 'Raw sql query'],
+            ['r', 'r', InputOption::VALUE_OPTIONAL, 'Raw sql query'],
             ['c', 'c', InputOption::VALUE_OPTIONAL, 'Connection name'],
         ];
     }
