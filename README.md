@@ -25,8 +25,13 @@ composer update
 
 Add the following line to config/app.php file's _providers_ array
 
-```bash
+```php
 Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
+```
+For _lumen_ open bootstrap/app.php and the line below
+
+```php
+$app->register(Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class);
 ```
 
 <hr/>
