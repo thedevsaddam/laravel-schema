@@ -28,7 +28,7 @@ Add the following line to config/app.php file's _providers_ array
 ```php
 Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class,
 ```
-For _lumen_ open bootstrap/app.php and the line below
+For _lumen_ open bootstrap/app.php and add the line below
 
 ```php
 $app->register(Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class);
