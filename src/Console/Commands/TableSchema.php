@@ -80,11 +80,25 @@ class TableSchema extends Command
         $page = (!empty($this->option('p'))) ? $this->option('p') : 1;
         $limit = (!empty($this->option('l'))) ? $this->option('l') : 15;
         $orderBy = (!empty($this->option('o'))) ? $this->option('o') : null;
+        $select = (!empty($this->option('s'))) ? $this->option('s') : null;
         $columns = $this->schema->databaseWrapper->getColumns($tableName);
-        $headers = array_map(function ($column) {
-            return $column['Field'];
-        }, $columns);
+        if (str_contains($select, ',')) {
+            $selectedColumns = explode(',', $select);
+        } else {
+            $selectedColumns[] = $select;
+        }
 
+        $headers = [];
+        foreach ($columns as $column) {
+            foreach ($selectedColumns as $selected) {
+                if (!$select) {
+                    $headers[] = $column['Field'];
+                } else {
+                    if (($selected == $column['Field']))
+                        $headers[] = $column['Field'];
+                }
+            }
+        }
         $attributeName = null;
         $order = null;
         if (null !== $orderBy) {
@@ -105,6 +119,7 @@ class TableSchema extends Command
         $body = $this->makeTableBody($headers, $rows);
         $rowsCount = $this->schema->getTableRowCount($tableName);
         $this->info($tableName . ' (rows ' . $rowsCount . ')');
+
         $this->table($headers, $body);
         return false;
     }
@@ -118,7 +133,7 @@ class TableSchema extends Command
     private function makeTableBody($headers, $rows)
     {
         $body = [];
-        $tableCellWidth = ($this->option('w'))? $this->option('w') : 10;
+        $tableCellWidth = ($this->option('w')) ? $this->option('w') : 10;
         for ($i = 0; $i < count($rows); $i++) {
             $row = [];
             for ($j = 0; $j < count($headers); $j++) {
@@ -138,7 +153,8 @@ class TableSchema extends Command
             ['p', 'p', InputOption::VALUE_OPTIONAL, 'Page number'],
             ['l', 'l', InputOption::VALUE_OPTIONAL, 'Limit per page'],
             ['o', 'o', InputOption::VALUE_OPTIONAL, 'Order result against attribute'],
-            ['w', 'w', InputOption::VALUE_OPTIONAL, 'Width of the tabe cell in char'],
+            ['w', 'w', InputOption::VALUE_OPTIONAL, 'Width of the table cell in char'],
+            ['s', 's', InputOption::VALUE_OPTIONAL, 'Selected columns name'],
         ];
     }
 
