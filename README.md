@@ -112,6 +112,7 @@ Avaliable Options in **table**:
 * `--l=rowsLimitPerPage` or `-l rowsLimitPerPage` to provide number of rows you want to display (e.g: --l=20).
 * `--c=connectionName` or `-c connectionName` to provide connection name
 * `--w=widthOfTableCell` or `-w widthOfTableCell` to provide character length of cell to show in tables (numeric [default=10]).
+* `--s=columnName` to provide the column to display, you can provide comma (,) separated names to display (e.g: --s=name or --s=id,name).
 
 
 ```bash
