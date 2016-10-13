@@ -16,7 +16,7 @@ class TableSchema extends Command
      *
      * @var string
      */
-    protected $name = 'schema:table {tableName?} {page?} {orderBy?} {limit?}';
+    protected $name = 'schema:table';
 
     /**
      * The console command description.
