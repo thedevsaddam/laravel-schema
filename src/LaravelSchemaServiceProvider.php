@@ -3,16 +3,22 @@
 namespace Thedevsaddam\LaravelSchema;
 
 use Illuminate\Support\ServiceProvider;
+use Thedevsaddam\LaravelSchema\Console\Commands\HelpSchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\ListSchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\QuerySchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\ShowSchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\SimpleSchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\TableSchema;
 
 class LaravelSchemaServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        'Thedevsaddam\LaravelSchema\Console\Commands\HelpSchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\ListSchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\QuerySchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\ShowSchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\SimpleSchema',
-        'Thedevsaddam\LaravelSchema\Console\Commands\TableSchema',
+        HelpSchema::class,
+        ListSchema::class,
+        QuerySchema::class,
+        ShowSchema::class,
+        SimpleSchema::class,
+        TableSchema::class,
     ];
 
     /**
