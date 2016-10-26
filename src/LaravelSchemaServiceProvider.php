@@ -5,6 +5,7 @@ namespace Thedevsaddam\LaravelSchema;
 use Illuminate\Support\ServiceProvider;
 use Thedevsaddam\LaravelSchema\Console\Commands\HelpSchema;
 use Thedevsaddam\LaravelSchema\Console\Commands\ListSchema;
+use Thedevsaddam\LaravelSchema\Console\Commands\MonitorSchema;
 use Thedevsaddam\LaravelSchema\Console\Commands\QuerySchema;
 use Thedevsaddam\LaravelSchema\Console\Commands\ShowSchema;
 use Thedevsaddam\LaravelSchema\Console\Commands\SimpleSchema;
@@ -19,6 +20,7 @@ class LaravelSchemaServiceProvider extends ServiceProvider
         ShowSchema::class,
         SimpleSchema::class,
         TableSchema::class,
+        MonitorSchema::class,
     ];
 
     /**
