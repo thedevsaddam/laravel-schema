@@ -33,7 +33,7 @@ class MonitorSchema extends Command
      * Help table headers
      * @var array
      */
-    protected $headers = ["Method Name", "Usage"];
+    protected $headers = ["Name", "Value"];
 
     /**
      * Help table body
@@ -74,17 +74,40 @@ class MonitorSchema extends Command
         $startByteReceived = $this->getValueIfExist($startQueries, 'Bytes_received');
         $startConnections = $this->getValueIfExist($startQueries, 'Connections');
 
-        sleep(1);
+        $startCreateDb = $this->getValueIfExist($startQueries, 'Com_create_db');
+        $startCreateEvent = $this->getValueIfExist($startQueries, 'Com_create_event');
+        $startCreateFunc = $this->getValueIfExist($startQueries, 'Com_create_function');
+        $startCreateProcedure = $this->getValueIfExist($startQueries, 'Com_create_procedure');
+        $startCreateServer = $this->getValueIfExist($startQueries, 'Com_create_server');
+        $startCreateTable = $this->getValueIfExist($startQueries, 'Com_create_table');
+        $startCreateTrigger = $this->getValueIfExist($startQueries, 'Com_create_trigger');
+        $startCreateUDF = $this->getValueIfExist($startQueries, 'Com_create_udf');
+        $startCreateUser = $this->getValueIfExist($startQueries, 'Com_create_user');
+        $startCreateView = $this->getValueIfExist($startQueries, 'Com_create_view');
+
+        sleep(2);
 
         // end queries
         $endQueries = $this->schema->rawQuery('show global status');
         $endSelect = $this->getValueIfExist($endQueries, 'Com_select');
-        $endUpdate = $this->getValueIfExist($startQueries, 'Com_update');
-        $endInsert = $this->getValueIfExist($startQueries, 'Com_insert');
-        $endDelete = $this->getValueIfExist($startQueries, 'Com_delete');
-        $endByteSent = $this->getValueIfExist($startQueries, 'Bytes_sent');
-        $endByteReceived = $this->getValueIfExist($startQueries, 'Bytes_received');
-        $endConnections = $this->getValueIfExist($startQueries, 'Connections');
+        $endUpdate = $this->getValueIfExist($endQueries, 'Com_update');
+        $endInsert = $this->getValueIfExist($endQueries, 'Com_insert');
+        $endDelete = $this->getValueIfExist($endQueries, 'Com_delete');
+        $endByteSent = $this->getValueIfExist($endQueries, 'Bytes_sent');
+        $endByteReceived = $this->getValueIfExist($endQueries, 'Bytes_received');
+        $endConnections = $this->getValueIfExist($endQueries, 'Connections');
+
+        $endCreateDb = $this->getValueIfExist($endQueries, 'Com_create_db');
+        $endCreateEvent = $this->getValueIfExist($endQueries, 'Com_create_event');
+        $endCreateFunc = $this->getValueIfExist($endQueries, 'Com_create_function');
+        $endCreateProcedure = $this->getValueIfExist($endQueries, 'Com_create_procedure');
+        $endCreateServer = $this->getValueIfExist($endQueries, 'Com_create_server');
+        $endCreateTable = $this->getValueIfExist($endQueries, 'Com_create_table');
+        $endCreateTrigger = $this->getValueIfExist($endQueries, 'Com_create_trigger');
+        $endCreateUDF = $this->getValueIfExist($endQueries, 'Com_create_udf');
+        $endCreateUser = $this->getValueIfExist($endQueries, 'Com_create_user');
+        $endCreateView = $this->getValueIfExist($endQueries, 'Com_create_view');
+
         $timeSpan = (time() - $uptimeStart);
 
         $headers = ['Name', 'Value'];
@@ -115,11 +138,59 @@ class MonitorSchema extends Command
             ],
             [
                 'name' => 'Connections',
-                'value' => round(($endConnections - $startConnections) / $timeSpan) . ' PS'
+                'value' => round(($endConnections - $startConnections) / $timeSpan) . ' PS '
+            ],
+            [
+                'name' => 'Total Connections',
+                'value' => round($endConnections)
+            ],
+            [
+                'name' => '',
+                'value' => ''
+            ],
+            [
+                'name' => 'Create DB',
+                'value' => round(($endCreateDb - $startCreateDb) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Event',
+                'value' => round(($endCreateEvent - $startCreateEvent) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Function',
+                'value' => round(($endCreateFunc - $startCreateFunc) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Procedure',
+                'value' => round(($endCreateProcedure - $startCreateProcedure) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Server',
+                'value' => round(($endCreateServer - $startCreateServer) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Table',
+                'value' => round(($endCreateTable - $startCreateTable) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create Trigger',
+                'value' => round(($endCreateTrigger - $startCreateTrigger) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create UDF',
+                'value' => round(($endCreateUDF - $startCreateUDF) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create User',
+                'value' => round(($endCreateUser - $startCreateUser) / $timeSpan) . ' PS'
+            ],
+            [
+                'name' => 'Create View',
+                'value' => round(($endCreateView - $startCreateView) / $timeSpan) . ' PS'
             ],
         ];
         $this->info('Iteration: ' . $iteration);
-        $this->table($headers, $body);
+        $this->table($this->headers, $body);
         $this->line('');
     }
 
