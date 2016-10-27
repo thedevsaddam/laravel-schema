@@ -198,14 +198,14 @@ class MysqlWrapper implements WrapperContract
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Payload sent', $this->formatBytes(round(($endByteSent - $startByteSent) / $timeSpan)),
+                'Payload sent', $this->formatBytes(round(($endByteSent - $startByteSent) / $timeSpan)) . '/s',
                 'Server', round(($endCreateServer - $startCreateServer) / $timeSpan) . ' PS',
                 'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
                 'Procedure', round(($endDropProcedure - $startDropProcedure) / $timeSpan) . ' PS'
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Payload received', $this->formatBytes(round(($endByteReceived - $startByteReceived) / $timeSpan)),
+                'Payload received', $this->formatBytes(round(($endByteReceived - $startByteReceived) / $timeSpan)) . '/s',
                 'Table', round(($endCreateTable - $startCreateTable) / $timeSpan) . ' PS',
                 'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
                 'Server', round(($endDropServer - $startDropServer) / $timeSpan) . ' PS'
