@@ -18,7 +18,7 @@ trait Helper
     {
         $modelPath = app()->getNamespace() . $namespaceModel;
         $modelPath = class_exists($modelPath) ? $modelPath : $namespaceModel;
-        if(!class_exists($modelPath)){
+        if (!class_exists($modelPath)) {
             throw new \Exception("Model {$modelPath} not exist!");
         }
         return with(new $modelPath())->getTable();
@@ -33,4 +33,34 @@ trait Helper
         return str_contains($namespaceModel, "\\");
     }
 
+    /**
+     * Format bytes
+     * @param $bytes
+     * @param int $precision
+     * @return string
+     */
+    function formatBytes($bytes, $precision = 2)
+    {
+        $units = array('B', 'KB', 'MB', 'GB', 'TB');
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
+        return round($bytes, $precision) . ' ' . $units[$pow];
+    }
+
+
+    /**
+     * Fetch queries value if key exist
+     * @param $queries
+     * @param $keyString
+     * @return mixed
+     */
+    public function getValueIfExist($queries, $keyString)
+    {
+        foreach ($queries as $query) {
+            if ($query->Variable_name == $keyString) {
+                return $query->Value;
+            }
+        }
+    }
 }

@@ -9,10 +9,13 @@
 namespace Thedevsaddam\LaravelSchema\Schema\Wrapper;
 
 
+use Thedevsaddam\LaravelSchema\Schema\Helper;
 use Thedevsaddam\LaravelSchema\Schema\BaseSchema;
 
 class MysqlWrapper implements WrapperContract
 {
+
+    use Helper;
 
     protected $baseSchema;
 
@@ -195,14 +198,14 @@ class MysqlWrapper implements WrapperContract
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Byte sent', round(($endByteSent - $startByteSent) / $timeSpan),
+                'Payload sent', $this->formatBytes(round(($endByteSent - $startByteSent) / $timeSpan)),
                 'Server', round(($endCreateServer - $startCreateServer) / $timeSpan) . ' PS',
                 'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
                 'Procedure', round(($endDropProcedure - $startDropProcedure) / $timeSpan) . ' PS'
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Byte received', round(($endByteReceived - $startByteReceived) / $timeSpan),
+                'Payload received', $this->formatBytes(round(($endByteReceived - $startByteReceived) / $timeSpan)),
                 'Table', round(($endCreateTable - $startCreateTable) / $timeSpan) . ' PS',
                 'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
                 'Server', round(($endDropServer - $startDropServer) / $timeSpan) . ' PS'
@@ -239,18 +242,4 @@ class MysqlWrapper implements WrapperContract
         ];
     }
 
-    /**
-     * Fetch queries value if key exist
-     * @param $queries
-     * @param $keyString
-     * @return mixed
-     */
-    private function getValueIfExist($queries, $keyString)
-    {
-        foreach ($queries as $query) {
-            if ($query->Variable_name == $keyString) {
-                return $query->Value;
-            }
-        }
-    }
 }
