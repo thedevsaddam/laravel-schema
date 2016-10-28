@@ -56,6 +56,15 @@ class MonitorSchema extends Command
      */
     public function handle()
     {
+        //change connection if provide
+        if ($this->option('c')) {
+            $this->schema->setConnection($this->option('c'));
+            $this->schema->switchWrapper();
+            if($this->schema->connection !== 'mysql'){
+                $this->warn('Monitoring in currently supporting for mysql and updating.');
+                return false;
+            }
+        }
         $timeInterval = 2;
         if (null !== $this->option('i') & is_integer($this->option('i'))) {
             $timeInterval = $this->option('i');
@@ -70,7 +79,8 @@ class MonitorSchema extends Command
     protected function getOptions()
     {
         return [
-            ['i', 'i', InputOption::VALUE_OPTIONAL, 'Interval time']
+            ['i', 'i', InputOption::VALUE_OPTIONAL, 'Interval time'],
+            ['c', 'c', InputOption::VALUE_OPTIONAL, 'Connection name']
         ];
     }
 
