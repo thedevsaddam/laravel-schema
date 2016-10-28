@@ -149,7 +149,7 @@ Example output: Showing the database status
 
 You can pass --i=integerNumber as refresh time interval and --c=ConnectionName as well
 ```bash
- php artisan schema:show --i=3 --c=secondaryDatabase
+ php artisan schema:monitor --i=3 --c=secondaryDatabase
 ```
 
 <hr/>
