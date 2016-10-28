@@ -60,7 +60,7 @@ class MonitorSchema extends Command
         if ($this->option('c')) {
             $this->schema->setConnection($this->option('c'));
             $this->schema->switchWrapper();
-            if($this->schema->connection !== 'mysql'){
+            if ($this->schema->connection !== 'mysql') {
                 $this->warn('Monitoring in currently supporting for mysql and updating.');
                 return false;
             }
