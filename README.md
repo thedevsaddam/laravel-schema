@@ -43,6 +43,7 @@ $app->register(Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class);
 1. `php artisan schema:show` Display all the available tables schema information in tabular form (_please see details below_).
 1. `php artisan schema:table --t=yourTableName or --t=Namespace\\Model` Display a table's paginated data (_please see details below_).
 1. `php artisan schema:query --r="wirte your raw sql query in double quote"` Perform a sql query.
+1. `php artisan schema:monitor` Display database server status.
 
 <hr/>
 
@@ -134,6 +135,22 @@ Avaliable Options in **query**:
 
 * `--r=yourRawQuery` or `-r yourRawQuery` to provide your raw sql query (e.g: --r="select * from someTable limit 20").
 * `--c=connectionName` or `-c connectionName` to provide connection name (e.g: --c=mysql or -c sqlite)
+
+
+
+**Monitor database server**
+```bash
+ php artisan schema:monitor
+```
+
+Example output: Showing the database status
+
+![Schema information in tabular form](https://raw.githubusercontent.com/thedevsaddam/laravel-schema/master/screenshots/monitoring-schema.png)
+
+You can pass --i=integerNumber as refresh time interval and --c=ConnectionName as well
+```bash
+ php artisan schema:show --i=3 --c=secondaryDatabase
+```
 
 <hr/>
 
