@@ -35,7 +35,7 @@ class MysqlWrapper implements WrapperContract
 
     public function getColumns($tableName)
     {
-        return $this->transformColumns($this->baseSchema->database->select("SHOW COLUMNS FROM " . $tableName));
+        return $this->transformColumns($this->baseSchema->database->select("SHOW COLUMNS FROM `{$tableName}`"));
     }
 
     public function getSchema()
