@@ -1,5 +1,5 @@
 {
-    "name": "ice6/laravel-schema",
+    "name": "thedevsaddam/laravel-schema",
     "description": "Display the connected database information in console.",
     "type": "package",
     "keywords": [
@@ -10,7 +10,7 @@
         "database",
         "laravel-database viewer"
     ],
-    "homepage": "https://github.com/ice6/laravel-schema",
+    "homepage": "https://github.com/thedevsaddam/laravel-schema",
     "license": "MIT",
     "authors": [
         {
